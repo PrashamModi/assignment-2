@@ -45,29 +45,57 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route exact path="/" element={<Default />}></Route>
-        <Route
-          exact
-          path="/home"
-          element={<Home pageData={pages[0]} />}
-        ></Route>
-        <Route
-          exact
-          path="/about"
-          element={<About pageData={pages[1]} />}
-        ></Route>
-        <Route
-          exact
-          path="/service"
-          element={<Service pageData={pages[2]} />}
-        ></Route>
-        <Route
-          exact
-          path="/contact"
-          element={<Contact pageData={pages[3]} />}
-        ></Route>
+        {pages.map((page, index) => (
+          <Route
+            key={index}
+            path={`/${page.PageName.toLowerCase()}`}
+            element={<DynamicComponent pageData={page} />}
+          ></Route>
+        ))}
       </Routes>
     </BrowserRouter>
+    // <BrowserRouter>
+    //   <Routes>
+    //     <Route exact path="/" element={<Default />}></Route>
+    //     <Route
+    //       exact
+    //       path="/home"
+    //       element={<Home pageData={pages[0]} />}
+    //     ></Route>
+    //     <Route
+    //       exact
+    //       path="/about"
+    //       element={<About pageData={pages[1]} />}
+    //     ></Route>
+    //     <Route
+    //       exact
+    //       path="/service"
+    //       element={<Service pageData={pages[2]} />}
+    //     ></Route>
+    //     <Route
+    //       exact
+    //       path="/contact"
+    //       element={<Contact pageData={pages[3]} />}
+    //     ></Route>
+    //   </Routes>
+    // </BrowserRouter>
   );
+}
+
+function DynamicComponent({ pageData }) {
+  // Implement the logic to render the component based on pageData
+  switch (pageData.PageName) {
+    case "Home":
+      return <Home pageData={pageData} />;
+    case "About":
+      return <About pageData={pageData} />;
+    case "Service":
+      return <Service pageData={pageData} />;
+    case "Contact":
+      return <Contact pageData={pageData} />;
+    default:
+      return <Default />;
+  }
 }
 
 export default App;

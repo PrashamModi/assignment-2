@@ -6,7 +6,6 @@ const Contact = ({pageData}) => {
   const {Data, PageName} = pageData;
   return (
     <>
-      <h1>Contact</h1>
       <Helmet>
         <title>{Data.title}</title>
         <meta name="description" content={Data.Description} />
